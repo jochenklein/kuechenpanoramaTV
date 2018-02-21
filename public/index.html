@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet/less" type="text/css" href="styles.less" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.0.0/less.min.js"></script>
+    <script type="text/javascript" src="controller.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+    var socket = io.connect('http://192.168.0.87:8000');
+    var timeInterval = 10 * 60 * 1000; // 5 minutes in milliseconds
+    var isInitialized = false;
+
+    if (!isInitialized) {
+        socket.emit('updateWebcamStreamsRequest2', 'Send request for updating stream.');
+    }
+
+    setInterval(
+        function() {
+            socket.emit('updateWebcamStreamsRequest2', 'Send request for updating stream.');
+        },
+        timeInterval);
+
+    socket.on('disconnect', function() {
+        console.log('Disconnected from server.');
+    });
+
+    socket.on('connect', function() {
+        console.log('Connected to server.');
+    });
+
+    socket.on('toggleMute', function(data) {
+        console.log(data);
+        toggleMute();
+    });
+
+    socket.on('playNextAudio', function(data) {
+        console.log(data);
+        playNextAudio();
+    });
+
+    socket.on('playNextVideo', function(data) {
+        console.log(data);
+        playNextVideo();
+    });
+
+    socket.on('setNextResort', function(data) {
+        console.log(data);
+        setNextResort();
+    });
+
+    socket.on('updateWebcamStreams', function(data) {
+        updateResorts(data);
+        if (!isInitialized) {
+            initVideo();
+            isInitialized = true;
+        }
+    });
+    </script>
+</head>
+
+<body>
+    <audio id="audio" autoplay muted>
+        <source src="" type="audio/mpeg" />
+    </audio>
+    <div id="screen">
+        <video id="video" autoplay muted controls>
+            <source type="video/mp4" />
+        </video>
+        <div id="banner_top">
+            <p class="date_time"></p>
+        </div>
+        <div id="banner_bottom">
+            <div class="column_top">
+                <h1 id="resort_name">Nordkette</h1>
+            </div>
+            <div class="column_bottom">
+                <div>
+                    <h2 id="webcam_name">Innsbruck - Hungerburg</h2>
+                </div>
+                <div>
+                    <p id="webcam_time">16:45</p>
+                </div>
+                <div>
+                    <p id="temperature">-5.6 °C</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    function getFormattedDateTimeString() {
+        var date = new Date();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var dateString = day + "." + month + "." + date.getFullYear();
+        var timeString = date.getHours() + ":" + date.getMinutes();
+        return dateString + ", " + timeString;
+    }
+
+    function setDateTime() {
+        document.getElementById("banner_top").getElementsByClassName("date_time")[0].innerHTML = getFormattedDateTimeString();
+    }
+    setDateTime();
+
+    setInterval(
+        function() {
+            setDateTime();
+        },
+        60 * 1000);
+    </script>
+</body>
+
+</html>

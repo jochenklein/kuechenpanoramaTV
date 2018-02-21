@@ -1,0 +1,63 @@
+[
+{
+    "name": "Nordkette",
+    "request": true,
+    "cams": [
+    {
+        "name": "Innsbruck - Hungerburg",
+        "url": "https://webtv.feratel.com/webtv/?cam=5646&lg=de",
+        "temperature": "",
+        "time": "",
+        "elevation": 870
+    },
+    {
+        "name": "Seegrube",
+        "url": "https://webtv.feratel.com/webtv/?cam=5645&lg=de",
+        "temperature": "",
+        "time": "",
+        "elevation": 1905
+    },
+    {
+        "name": "Hafelekar",
+        "url": "https://webtv.feratel.com/webtv/?cam=5647&lg=de",
+        "temperature": "",
+        "time": "",
+        "elevation": 2256
+    }]
+},
+{
+    "name": "Glungezer",
+    "request": true,
+    "cams": [
+    {
+        "name": "Tulfes - Glungezerbahn Mittelstation",
+        "url": "https://webtv.feratel.com/webtv/?cam=5659&lg=de",
+        "temperature": "",
+        "time": ""
+    }]
+},
+{
+    "name": "Patscherkofel",
+    "request": false,
+    "cams": [
+    {
+        "name": "Patscherkofel Bergstation",
+        "url": "http://portal.live-panorama.com/patscherkofel/bergstation.mp4"
+    },
+    {
+        "name": "Pastorstraße",
+        "url": "http://portal.live-panorama.com/patscherkofel/stadt.mp4"
+    }]
+},
+{
+    "name": "Axamer Lizum",
+    "request": true,
+    "cams": [
+    {
+        "name": "Axamer Lizum",
+        "url": "https://webtv.feratel.com/webtv/?cam=5510&lg=de",
+        "temperature": "",
+        "time": "",
+        "elevation": 2340
+    }]
+}]

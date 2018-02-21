@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Remote</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+    var socket = io.connect('http://192.168.0.87:8000');
+
+    function toggleMute() {
+        socket.emit('toggleMuteRequest', 'Send request for toggling the audio (mute/unmute).');
+    }
+
+    function playNextAudio() {
+        socket.emit('playNextAudioRequest', 'Send request for playing the next audio track.');
+    }
+
+    function playNextVideo() {
+        socket.emit('playNextVideoRequest', 'Send request for switching to next camera.');
+    }
+
+    function setNextResort() {
+        socket.emit('setNextResortRequest', 'Send request for setting next resort.');
+    }
+
+    function updateWebcamStreams() {
+        socket.emit('updateWebcamStreamsRequest2', 'Send request for updating stream.');
+    }
+    </script>
+</head>
+
+<body>
+    <button id="button" onclick="setNextResort()">Go to next resort</button>
+    <br/>
+    <button id="button" onclick="playNextVideo()">Play next webcam</button>
+    <br/>
+    <button id="button" onclick="playNextAudio()">Play next audio track</button>
+    <br/>
+    <button id="button" onclick="toggleMute()">Toggle audio mute</button>
+    <br/>
+    <button id="button" onclick="updateWebcamStreams()">Update webcam streams</button>
+</body>
+
+</html>
