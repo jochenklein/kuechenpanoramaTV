@@ -63,7 +63,7 @@
 </head>
 
 <body>
-    <audio id="audio" autoplay muted>
+    <audio id="audio" autoplay>
         <source src="" type="audio/mpeg" />
     </audio>
     <div id="screen">
@@ -110,6 +110,9 @@
             setDateTime();
         },
         60 * 1000);
+
+    var htmlAudioPlayer = document.getElementById('audio');
+    htmlAudioPlayer.muted = true;
     </script>
 </body>
 
